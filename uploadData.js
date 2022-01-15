@@ -10,4 +10,5 @@ const databaseURL = "https://react-crud-experimental.firebaseio.com";
 firestoreService.initializeApp(serviceAccount, databaseURL);
 
 /* data.json will be the source of the info that you want to export into firestore */
-firestoreService.restore("toshiba-incidents.json");
+/* firestoreService.restore("inmueblesMX.json"); */
+firestoreService.restore("MOCK_DATA.json");

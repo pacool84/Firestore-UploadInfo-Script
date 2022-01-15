@@ -1,24 +1,25 @@
-import logo from "./logo.svg";
+import React from "react";
 import "./App.css";
+import firebase from "./firebase";
 
 function App() {
+  const [inmuebles, setInmuebles] = React.useState([]);
+
+  React.useEffect(() => {
+    const fectData = async () => {
+      const db = firebase.firestore();
+      const data = await db.collection("Inmuebles").get();
+      setInmuebles(data.map((doc) => doc.data()));
+    };
+    fectData();
+  }, []);
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ul>
+      {" "}
+      {inmuebles.map((inmueble) => (
+        <li key={inmueble.Estatus}>{inmueble.Estatus}</li>
+      ))}{" "}
+    </ul>
   );
 }
 
